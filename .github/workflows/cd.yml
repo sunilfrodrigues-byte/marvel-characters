@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p ~/.databricks
           cat > ~/.databrickscfg << EOF
-          [marvelous]
+            [marvelous]
           host = ${{ vars.DATABRICKS_HOST }}
           client_id = ${{ secrets.DATABRICKS_CLIENT_ID }}
           client_secret = ${{ secrets.DATABRICKS_CLIENT_SECRET }}
@@ -46,7 +46,7 @@ jobs:
         env:
           DATABRICKS_BUNDLE_ENV: ${{ matrix.environment }}
         run: |
-            databricks bundle deploy \
+            databricks bundle deploy --profile marvelous\
               --var="git_sha=${{ github.sha }}" \
               --var="branch=${{ github.ref_name }}"
             if [ "${{ matrix.environment }}" = "prd" ]; then
