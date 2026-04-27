@@ -31,6 +31,7 @@ jobs:
 
       - name: Configure Databricks CLI
         run: |
+          echo "Databricks Host : $DATABRICKS_HOST"
           mkdir -p ~/.databricks
           cat > ~/.databrickscfg << EOF
           host = ${{ vars.DATABRICKS_HOST }}
